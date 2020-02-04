@@ -1,0 +1,16 @@
+apiVersion: build.pivotal.io/v1alpha1
+kind: Image
+metadata:
+  name: app-bar
+  namespace: kpack-builders
+spec:
+  tag: alexandreroman/cnb-springboot-bar
+  serviceAccount: kpack-service-account
+  builder:
+    name: custom-java-builder
+    kind: CustomBuilder
+  cacheSize: "2Gi"
+  source:
+    git:
+      url: https://github.com/alexandreroman/cnb-springboot.git
+      revision: testing

@@ -1,0 +1,4 @@
+container-image: alexandreroman/cnb-springboot-bar
+kubernetes-namespace: app-bar
+kubernetes-deployment: app
+kubernetes-container: app
