@@ -41,6 +41,9 @@ We'll simulate these buildpack / stack updates by using a custom kpack Java buil
 Make sure
 [kpack is deployed to your Kubernetes cluster](https://github.com/pivotal/kpack/blob/master/docs/install.md).
 
+This repository has been tested with kpack version
+[0.0.6](https://github.com/pivotal/kpack/releases/tag/v0.0.6).
+
 You should have no issues deploying kpack to your favorite Kubernetes cluster.
 
 kpack resources are running in the `kpack` namespace:
