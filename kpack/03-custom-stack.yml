@@ -7,6 +7,6 @@ metadata:
 spec:
   id: "io.buildpacks.stacks.bionic"
   buildImage:
-    image: "gcr.io/paketo-buildpacks/build:0.0.12-base-cnb"
+    image: "cloudfoundry/build:0.0.1-base-cnb"
   runImage:
-    image: "gcr.io/paketo-buildpacks/run:0.0.13-base-cnb"
+    image: "cloudfoundry/run:0.0.1-base-cnb"

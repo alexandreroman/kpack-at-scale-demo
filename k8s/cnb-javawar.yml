@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: app-bar
+  name: cnb-javawar
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  namespace: app-bar
+  namespace: cnb-javawar
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cnb-springboot
+      app: cnb-javawar
   template:
     metadata:
       labels:
-        app: cnb-springboot
+        app: cnb-javawar
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/path: "/metrics"
         prometheus.io/port:  "8080"
     spec:
       containers:
-        - image: alexandreroman/cnb-springboot-bar
+        - image: alexandreroman/cnb-javawar-kpack
           name: app
           resources:
             limits:
@@ -33,22 +33,22 @@ spec:
           livenessProbe:
             httpGet:
               port: 8080
-              path: /actuator/health
+              path: /api/info
             initialDelaySeconds: 60
             periodSeconds: 2
           readinessProbe:
             httpGet:
               port: 8080
-              path: /actuator/health
+              path: /api/info
             initialDelaySeconds: 10
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: app
-  namespace: app-bar
+  namespace: cnb-javawar
   labels:
-    app: cnb-springboot
+    app: cnb-javawar
 spec:
   type: LoadBalancer
   ports:
@@ -56,4 +56,4 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: cnb-springboot
+    app: cnb-javawar
