@@ -1,0 +1,4 @@
+container-image: alexandreroman/cnb-nodejs-kpack
+kubernetes-namespace: cnb-nodejs
+kubernetes-deployment: app
+kubernetes-container: app

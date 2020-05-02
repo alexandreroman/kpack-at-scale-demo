@@ -1,4 +1,0 @@
-container-image: alexandreroman/cnb-springboot-baz
-kubernetes-namespace: app-baz
-kubernetes-deployment: app
-kubernetes-container: app

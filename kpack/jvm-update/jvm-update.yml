@@ -1,3 +1,4 @@
+---
 apiVersion: experimental.kpack.pivotal.io/v1alpha1
 kind: Store
 metadata:
@@ -5,4 +6,28 @@ metadata:
   namespace: kpack-builders
 spec:
   sources:
-  - image: cloudfoundry/cnb:0.0.79-cflinuxfs3
+  - image: gcr.io/paketo-buildpacks/builder:0.0.100-bionic
+---
+apiVersion: experimental.kpack.pivotal.io/v1alpha1
+kind: CustomBuilder
+metadata:
+  name: custom-java-builder
+  namespace: kpack-builders
+spec:
+  tag: alexandreroman/kpack-custom-java-builder
+  serviceAccount: kpack-service-account
+  stack: bionic-stack
+  store: custom-java-store
+  order:
+  - group:
+    - id: paketo-buildpacks/bellsoft-liberica
+    - id: paketo-buildpacks/build-system
+      optional: true
+    - id: paketo-buildpacks/executable-jar
+      optional: true
+    - id: paketo-buildpacks/apache-tomcat
+      optional: true
+    - id: paketo-buildpacks/spring-boot
+      optional: true
+    - id: paketo-buildpacks/dist-zip
+      optional: true

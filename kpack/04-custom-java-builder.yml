@@ -1,16 +1,3 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kpack-builders
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: kpack-service-account
-  namespace: kpack-builders
-secrets:
-  - name: dockerhub-creds
-  - name: github-creds
 ---
 apiVersion: experimental.kpack.pivotal.io/v1alpha1
 kind: Store
@@ -19,19 +6,7 @@ metadata:
   namespace: kpack-builders
 spec:
   sources:
-  - image: cloudfoundry/cnb:0.0.40-bionic
----
-apiVersion: experimental.kpack.pivotal.io/v1alpha1
-kind: Stack
-metadata:
-  name: bionic-stack
-  namespace: kpack-builders
-spec:
-  id: "io.buildpacks.stacks.bionic"
-  buildImage:
-    image: "cloudfoundry/build:0.0.1-full-cnb"
-  runImage:
-    image: "cloudfoundry/run:0.0.1-full-cnb"
+  - image: cloudfoundry/cnb:0.0.81-bionic
 ---
 apiVersion: experimental.kpack.pivotal.io/v1alpha1
 kind: CustomBuilder
@@ -48,6 +23,11 @@ spec:
     - id: org.cloudfoundry.openjdk
     - id: org.cloudfoundry.buildsystem
       optional: true
-    - id: org.cloudfoundry.jvmapplication 
+    - id: org.cloudfoundry.jvmapplication
+      optional: true
+    - id: org.cloudfoundry.tomcat
+      optional: true
     - id: org.cloudfoundry.springboot
+      optional: true
+    - id: org.cloudfoundry.distzip
       optional: true

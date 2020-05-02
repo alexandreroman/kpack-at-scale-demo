@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: app-baz
+  name: cnb-springboot
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: app
-  namespace: app-baz
+  namespace: cnb-springboot
 spec:
   replicas: 1
   selector:
@@ -23,7 +23,7 @@ spec:
         prometheus.io/port:  "8080"
     spec:
       containers:
-        - image: alexandreroman/cnb-springboot-baz
+        - image: alexandreroman/cnb-springboot-kpack
           name: app
           resources:
             limits:
@@ -46,7 +46,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: app
-  namespace: app-baz
+  namespace: cnb-springboot
   labels:
     app: cnb-springboot
 spec:

@@ -1,16 +1,16 @@
 apiVersion: build.pivotal.io/v1alpha1
 kind: Image
 metadata:
-  name: app-foo
+  name: cnb-nodejs
   namespace: kpack-builders
 spec:
-  tag: alexandreroman/cnb-springboot-foo
+  tag: alexandreroman/cnb-nodejs-kpack
   serviceAccount: kpack-service-account
   builder:
-    name: custom-java-builder
+    name: custom-nodejs-builder
     kind: CustomBuilder
   cacheSize: "2Gi"
   source:
     git:
-      url: https://github.com/alexandreroman/cnb-springboot.git
+      url: https://github.com/alexandreroman/cnb-nodejs.git
       revision: testing

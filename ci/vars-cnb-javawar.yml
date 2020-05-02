@@ -1,0 +1,4 @@
+container-image: alexandreroman/cnb-javawar-kpack
+kubernetes-namespace: cnb-javawar
+kubernetes-deployment: app
+kubernetes-container: app

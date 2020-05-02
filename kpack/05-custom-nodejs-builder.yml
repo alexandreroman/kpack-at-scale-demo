@@ -1,0 +1,25 @@
+---
+apiVersion: experimental.kpack.pivotal.io/v1alpha1
+kind: Store
+metadata:
+  name: custom-nodejs-store
+  namespace: kpack-builders
+spec:
+  sources:
+  - image: gcr.io/paketo-buildpacks/builder:base
+---
+apiVersion: experimental.kpack.pivotal.io/v1alpha1
+kind: CustomBuilder
+metadata:
+  name: custom-nodejs-builder
+  namespace: kpack-builders
+spec:
+  tag: alexandreroman/kpack-custom-nodejs-builder
+  serviceAccount: kpack-service-account
+  stack: bionic-stack
+  store: custom-nodejs-store
+  order:
+  - group:
+    - id: paketo-buildpacks/nodejs
+    - id: paketo-buildpacks/node-engine
+    - id: paketo-buildpacks/npm
